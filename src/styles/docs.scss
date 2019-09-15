@@ -1,0 +1,111 @@
+body {
+  background-color: #fff3e6;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  position: relative;
+  width: 100%;
+}
+
+.page {
+  $self: &;
+  display: block;
+  padding: 100px 0;
+  &-header {
+    color: #212121;
+    display: block;
+    font-size: 60px;
+    font-weight: 700;
+    padding: 0 0 50px;
+    text-align: center;
+  }
+  &-sub-title , &-info {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+  &-action-wrapper {
+    display: inline-block;
+    padding: 50px 0;
+    text-align: center;
+    width: 100%;
+  }
+  &-action-area {
+    display: inline-block;
+  }
+  &-info {
+    font-size: 16px;
+    line-height: 24px;
+    + #{$self}-info {
+      margin-top: 8px;
+    }
+  }
+  &-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin: 0;
+    padding: 16px 0 8px;
+  }
+  &-table-wrapper {
+    display: inline-block;
+    width: 100%;
+  }
+  &-table {
+    text-align: left;
+    width: 100%;
+    tr {
+      height: 50px;
+    }
+    th , td {
+      padding: 5px;
+    }
+    tbody tr:nth-child(odd)  {
+      background-color: #ffe6cc;
+    }
+  }
+  &-code-wrapper {
+    background-color: #ffe6cc;
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    overflow-x: auto;
+    padding: 40px;
+    white-space: nowrap;
+    code {
+      padding: 10px 20px;
+    }
+  }
+  &-buttons-wrapper {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+  &-buttons {
+    display: inline-block;
+    list-style: none;
+    li {
+      float: left;
+    }
+  }
+  &-button {
+    background-color: #212121;
+    color: #ffffff;
+    display: block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    &:hover {
+      background-color: #424242;
+    }
+  }
+}

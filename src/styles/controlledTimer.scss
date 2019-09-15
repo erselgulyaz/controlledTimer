@@ -1,0 +1,36 @@
+.controlledtimer {
+  $self: &;
+  &-wrapper {
+    display: flex;
+    text-align: center;
+    width: 100%;
+  }
+  &-box-group {
+    padding: 0 10px;
+    position: relative;
+    + #{$self}-box-group {
+      &:before {
+        color: #212121;
+        content: ":";
+        font-size: 100px;
+        height: 100%;
+        left: -12px;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  &-box-item {
+    background-color: #212121;
+    color: #ffffff;
+    display: block;
+    float: left;
+    font-size: 100px;
+    font-weight: 700;
+    height: 140px;
+    line-height: 140px;
+    margin: 0 5px;
+    text-align: center;
+    width: 140px;
+  }
+}
