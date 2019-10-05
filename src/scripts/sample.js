@@ -2,8 +2,8 @@ import controlledTimer from './controlledTimer'
 
 window.addEventListener("load", () => {
     const timerEl = new controlledTimer({
-      start: "00:56",
-      end: "00:45",
+      start: "00:58",
+      end: "00:00",
       direction: "down"
     });
 

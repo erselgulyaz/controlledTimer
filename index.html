@@ -15,7 +15,7 @@
   <div class="page">
     <div class="container">
       <div class="page-header">controlledTimer</div>
-      <div class="page-sub-title">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo nobis earum odit tenetur velit? Molestiae quas tenetur libero ab fugit assumenda tempora vitae id quaerat quod exercitationem, sapiente, sequi iure.</div>
+      <div class="page-sub-title">controlledTimer is a forward / reverse time management application. You can set the start and end times and you can access different functions in both cases.</div>
       <div class="page-action-wrapper">
         <div class="page-action-area" id="controlledtimer-container">
           <div class="controlledtimer-wrapper" id="controlledtimer-selector"></div>
@@ -34,39 +34,62 @@
           </li>
         </ul>
       </div>
+      <!-- <p class="page-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, nam sapiente? Possimus perferendis iste doloremque praesentium consequuntur vero neque ipsum veniam ad iure, repellat, nemo impedit architecto officia et officiis.</p>
       <p class="page-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, nam sapiente? Possimus perferendis iste doloremque praesentium consequuntur vero neque ipsum veniam ad iure, repellat, nemo impedit architecto officia et officiis.</p>
-      <p class="page-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, nam sapiente? Possimus perferendis iste doloremque praesentium consequuntur vero neque ipsum veniam ad iure, repellat, nemo impedit architecto officia et officiis.</p>
-      <p class="page-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, nam sapiente? Possimus perferendis iste doloremque praesentium consequuntur vero neque ipsum veniam ad iure, repellat, nemo impedit architecto officia et officiis.</p>
-      <h2 class="page-title">Documentation for controlledTimer</h2>
+      <p class="page-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, nam sapiente? Possimus perferendis iste doloremque praesentium consequuntur vero neque ipsum veniam ad iure, repellat, nemo impedit architecto officia et officiis.</p> -->
+      <h2 class="page-title">Documentation</h2>
       <div class="page-table-wrapper">
         <table class="page-table" cellpadding="0" cellspacing="0">
           <thead>
             <tr cellpadding="0" cellspacing="0">
               <th>Name</th>
+              <th>Type</th>
               <th>Default</th>
               <th>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>X</td>
-              <td>Y</td>
-              <td>ZZZ ZZZ ZZZ</td>
+              <td>container</td>
+              <td>string</td>
+              <td>"#controlledtimer-container"</td>
+              <td>This is a container field selector. The presence of the section where the study will be performed is controlled by this selector.</td>
             </tr>
             <tr>
-              <td>X</td>
-              <td>Y</td>
-              <td>ZZZ ZZZ ZZZ</td>
+              <td>selector</td>
+              <td>string</td>
+              <td>"#controlledtimer-selector"</td>
+              <td>The created template is inserted into this selector.</td>
             </tr>
             <tr>
-              <td>X</td>
-              <td>Y</td>
-              <td>ZZZ ZZZ ZZZ</td>
+              <td>start</td>
+              <td>string</td>
+              <td>"00:58"</td>
+              <td>Start time</td>
             </tr>
             <tr>
-              <td>X</td>
-              <td>Y</td>
-              <td>ZZZ ZZZ ZZZ</td>
+              <td>end</td>
+              <td>string</td>
+              <td>"00:00"</td>
+              <td>End time</td>
+            </tr>
+            <tr>
+              <td>direction</td>
+              <td>string</td>
+              <td>"down"</td>
+              <td>How to count from start time to end time is determined by this feature. Only the "up" and "down" options can be written.</td>
+            </tr>
+            <tr>
+              <td>startCallback</td>
+              <td>function</td>
+              <td>function</td>
+              <td>It is a function that runs once when the time starts. You can run a function in your application.</td>
+            </tr>
+            <tr>
+              <td>endCallback</td>
+              <td>function</td>
+              <td>function</td>
+              <td>It is a function that runs once when the time expires. You can run a function in your application.</td>
             </tr>
           </tbody>
         </table>
@@ -75,11 +98,35 @@
       <h2 class="page-title">Usage</h2>
       <pre class="page-code-wrapper">
         <code>
-          <br>p { color: red; }
-          <br>p { color: red; }
-          <br>p { color: red; }
-          <br>p { color: red; }
-          <br>p { color: red; }
+          <br>const timerEl = new controlledTimer({
+          <br>&nbsp;&nbsp;container: '#controlledtimer-container',
+          <br>&nbsp;&nbsp;selector: '#controlledtimer-selector',
+          <br>&nbsp;&nbsp;start: '00:58',
+          <br>&nbsp;&nbsp;end: '00:00',
+          <br>&nbsp;&nbsp;direction: 'down', /* up, down */
+          <br>&nbsp;&nbsp;startCallback: () => {
+          <br>&nbsp;&nbsp;&nbsp;  console.log("start");
+          <br>&nbsp;&nbsp;},
+          <br>&nbsp;&nbsp;endCallback: () => {
+          <br>&nbsp;&nbsp;&nbsp;  console.log("end");
+          <br>&nbsp;&nbsp;},
+          <br>});
+
+          <br><br>const killButton = document.querySelector("#controlledtimer-kill");
+          <br>const restartButton = document.querySelector("#controlledtimer-restart");
+          <br>const playPauseButton = document.querySelector("#controlledtimer-playpause");
+          <br>
+          <br>killButton.addEventListener("click", () => {
+          <br>&nbsp;&nbsp;timerEl.kill();
+          <br>});
+          <br>
+          <br>restartButton.addEventListener("click", () => {
+          <br>&nbsp;&nbsp;timerEl.restart();
+          <br>});
+          <br>
+          <br>playPauseButton.addEventListener("click", () => {
+          <br>&nbsp;&nbsp;timerEl.playPause();
+          <br>});
         </code>
       </pre>
 

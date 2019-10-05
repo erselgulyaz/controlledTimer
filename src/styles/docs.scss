@@ -9,33 +9,47 @@ body {
   margin: 0 auto;
   max-width: 960px;
   position: relative;
-  width: 100%;
+  width: calc(100% - 30px);
 }
 
 .page {
   $self: &;
   display: block;
-  padding: 100px 0;
+  padding: 50px 0;
+  @media screen and(min-width: 768px) {
+    padding: 100px 0;
+  }
   &-header {
     color: #212121;
     display: block;
-    font-size: 60px;
+    font-size: 30px;
     font-weight: 700;
-    padding: 0 0 50px;
+    padding: 0 0 25px;
     text-align: center;
+    @media screen and(min-width: 768px) {
+      font-size: 60px;
+      padding: 0 0 50px;
+    }
   }
   &-sub-title , &-info {
     display: inline-block;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 16px;
+    line-height: 24px;
     margin: 0 auto;
     max-width: 90%;
+    @media screen and(min-width: 768px) {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
   &-action-wrapper {
     display: inline-block;
-    padding: 50px 0;
+    padding: 5px 0;
     text-align: center;
     width: 100%;
+    @media screen and(min-width: 768px) {
+      padding: 50px 0;
+    }
   }
   &-action-area {
     display: inline-block;
@@ -48,30 +62,47 @@ body {
     }
   }
   &-title {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 32px;
+    line-height: 24px;
     margin: 0;
-    padding: 16px 0 8px;
+    padding: 8px 0 4px;
+    @media screen and(min-width: 768px) {
+      font-size: 24px;
+      line-height: 32px;
+      padding: 16px 0 8px;
+    }
   }
   &-table-wrapper {
+    -webkit-overflow-scrolling: touch;
     display: inline-block;
+    overflow-x: auto;
     width: 100%;
   }
   &-table {
     text-align: left;
-    width: 100%;
+    width: 600px;
+    @media screen and(min-width: 768px) {
+      width: 100%;
+    }
     tr {
-      height: 50px;
+      @media screen and(min-width: 768px) {
+        height: 50px;
+      }
     }
     th , td {
       padding: 5px;
+      font-size: 12px;
+      @media screen and(min-width: 768px) {
+        font-size: 16px;
+      }
     }
     tbody tr:nth-child(odd)  {
       background-color: #ffe6cc;
     }
   }
   &-code-wrapper {
+    -webkit-overflow-scrolling: touch;
     background-color: #ffe6cc;
     display: block;
     font-size: 16px;
@@ -92,6 +123,11 @@ body {
   &-buttons {
     display: inline-block;
     list-style: none;
+    margin: 10px 0;
+    padding: 0;
+    @media screen and(min-width: 768px) {
+      margin: 20px 0;
+    }
     li {
       float: left;
     }
@@ -100,10 +136,16 @@ body {
     background-color: #212121;
     color: #ffffff;
     display: block;
-    margin: 0 10px;
-    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0 6px;
+    padding: 8px 15px;
     text-decoration: none;
     transition: all .2s ease-in-out;
+    @media screen and(min-width: 768px) {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 0 10px;
+    }
     &:hover {
       background-color: #424242;
     }

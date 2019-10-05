@@ -10,12 +10,8 @@ class controlledTimer {
       start: '00:58',
       end: '00:00',
       direction: 'down', /* up, down */
-      startCallback: () => {
-        console.log("start");
-      },
-      endCallback: () => {
-        console.log("end");
-      },
+      startCallback: () => {},
+      endCallback: () => {},
     };
 
     const extend = Object.assign(defaults, options);
@@ -25,11 +21,8 @@ class controlledTimer {
         this[key] = extend[key]
       }
     }
-
-    this.firstTimeValues = extend;
-
+    
     this.rending();
-
     this.init();
   }/* constructor */
 
@@ -75,7 +68,6 @@ class controlledTimer {
   partyHard() {
     this.startCallback();
     this.defaultInterval = setInterval(() => {
-      console.log(this.defaultInterval);
       if ( this.mainControl ) {
         if ( this.time !== this.end ) {
           if ( this.second >= 0 && this.second < 59 && this.second !== undefined ) {
@@ -154,10 +146,7 @@ class controlledTimer {
   
   restart() {
     clearInterval(this.defaultInterval);
-    // new controlledTimer(this.firstTimeValues);
-    
     this.rending();
-
     this.init();
   }
 
