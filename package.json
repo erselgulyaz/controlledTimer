@@ -1,5 +1,5 @@
 {
-  "name": "controlledtimer",
+  "name": "controlledTimer",
   "version": "1.0.0",
   "description": "controlledTimer is a forward / reverse time management application",
   "main": "./src/scripts/controlledTimer.js",
