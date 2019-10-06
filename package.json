@@ -1,13 +1,29 @@
 {
-  "name": "controlledTimer",
+  "name": "controlledtimer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "controlledTimer is a forward / reverse time management application",
+  "main": "./src/scripts/controlledTimer.js",
+  "author": {
+    "name": "Ersel Gülyaz",
+    "email": "erselgulyaz@gmail.com",
+    "url": "http://www.erselgulyaz.com"
+  },
+  "keywords": [
+    "javascript timer",
+    "forward and reverse timer",
+    "functional javascript timer",
+    "javascript plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erselgulyaz/controlledTimer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erselgulyaz/controlledTimer/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",

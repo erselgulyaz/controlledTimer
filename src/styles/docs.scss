@@ -61,6 +61,16 @@ body {
       margin-top: 8px;
     }
   }
+  &-inner-title {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+    padding: 10px 0;
+    @media screen and(min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
   &-title {
     font-size: 16px;
     font-weight: 700;
@@ -111,6 +121,9 @@ body {
     overflow-x: auto;
     padding: 40px;
     white-space: nowrap;
+    + #{$self}-code-wrapper {
+      margin-top: 10px;
+    }
     code {
       padding: 10px 20px;
     }

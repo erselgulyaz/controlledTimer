@@ -28,10 +28,6 @@ function styles() {
       .pipe(browserSync.stream());
 }
 
-/*  */
-
-/*  */
-
 function scripts(done) {
   glob(`${options.srcPath}/scripts/*.js`, (err,items) => {
     if (err) done(err);
@@ -57,6 +53,33 @@ function scripts(done) {
   })
 }
 
+/** for this repo */
+  function unminified(done) {
+    glob(`${options.srcPath}/scripts/controlledTimer.js`, (err,items) => {
+      if (err) done(err);
+      items.map(item => {
+        console.log(item);
+        return browserify({
+          entries: item
+        })
+        .transform(babelify.configure({
+          presets : ["@babel/preset-env"]
+        }))
+        .bundle()
+        .pipe(source(item.match(/\/([^\/]+)\/?$/)[1]))
+        .pipe(rename({
+          extname: '.unminified.js'
+        }))
+        .pipe(buffer())
+        // .pipe(uglify())
+        .pipe(dest(`${options.distPath}/scripts`))
+      })
+      done();
+    })
+  }
+
+/** for this repo */
+
 function watchTask() {
 
     browserSync.init({
@@ -75,6 +98,10 @@ function watchTask() {
   exports.default = series(
     parallel(styles, scripts),
     watchTask
+  );
+  
+  exports.build = series(
+    parallel(styles, scripts, unminified)
   );
 
 
