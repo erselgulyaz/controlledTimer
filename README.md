@@ -1,6 +1,8 @@
 # controlledTimer
 controlledTimer is a forward / reverse time management application. You can set the start and end times and you can access different functions in both cases.
 
+Values you can enter: day: hour: minute: second
+
 ## Properties
 * Pure javascript
 * Ecmascript 6
