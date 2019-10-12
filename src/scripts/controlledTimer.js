@@ -3,6 +3,7 @@ class controlledTimer {
 
     this.mainControl = true;
     this.defaultInterval = null;
+    this.sixtySecondCounter = 0;
 
     const defaults = {
       container: '#controlledtimer-container',
@@ -10,6 +11,10 @@ class controlledTimer {
       start: '00:58',
       end: '00:00',
       direction: 'down', /* up, down */
+      endMinuteControl: false,
+      endMinuteControlCallback: () => {},
+      sixtySecondControl: false,
+      sixtySecondControlCallback: () => {},
       startCallback: () => {},
       endCallback: () => {},
     };
@@ -67,14 +72,23 @@ class controlledTimer {
 
   partyHard() {
     this.startCallback();
+    if (this.sixtySecondControl) this.sixtySecondCounter = 0;
     this.defaultInterval = setInterval(() => {
       if ( this.mainControl ) {
+        if (this.sixtySecondControl) {
+          this.sixtySecondCounter++;
+          if ( this.sixtySecondCounter === 60 ) {
+            this.sixtySecondCounter = 0;
+            this.sixtySecondControlCallback();
+          }
+        }
+        
         if ( this.time !== this.end ) {
-          if ( this.second >= 0 && this.second < 59 && this.second !== undefined ) {
+          if ( this.second >= 0 && this.second <= 59 && this.second !== undefined ) {
             this.secondActions();
-          } else if ( this.minute >= 0 && this.minute < 59 && this.minute !== undefined ) {
+          } else if ( this.minute >= 0 && this.minute <= 59 && this.minute !== undefined ) {
             this.minuteActions();
-          } else if ( this.hour >= 0 && this.hour < 24 && this.hour !== undefined ) {
+          } else if ( this.hour >= 0 && this.hour <= 24 && this.hour !== undefined ) {
             this.hourActions();
           } else if ( this.day >= 0 && this.day !== undefined ) {
             this.dayActions();
@@ -95,45 +109,73 @@ class controlledTimer {
   }
 
   secondActions() {
-    this.direction === "down" ? this.second-- : this.second++;
+    if (this.direction === "down") {
+      this.second > 0 ? this.second-- : this.minuteActions();
+    } else if (this.direction === "up") {
+      this.second < 59 ? this.second++ : this.minuteActions();
+    }
     if (this.second.toString().split("").length < 2) this.second = `0${this.second}`; 
+    if (this.endMinuteControl) {
+      if(this.direction === "down" && this.second === "00") this.endMinuteControlCallback();
+      else if (this.direction === "up" && this.second === 59) this.endMinuteControlCallback();
+    }
   }
 
   minuteActions() {
     if ( this.direction === "down" ) {
-      this.minute--
-      this.second = 59;
-    } else {
-      this.minute++
-      this.second = `00`;
+      if ( this.minute > 0 ) {
+        this.minute--
+        this.second = 59;
+      } else {
+        this.hourActions();
+      }
+    } else if ( this.direction === "up" ) {
+      if ( this.minute < 59 ) {
+        this.minute++
+        this.second = `00`;
+      } else {
+        this.hourActions();
+      }
     }
     if (this.minute.toString().split("").length < 2) this.minute = `0${this.minute}`; 
   }
 
   hourActions() {
     if ( this.direction === "down" ) {
-      this.hour--;
-      this.minute = 59;
-      this.second = 59;
-    } else {
-      this.hour++;
-      this.minute = `00`;
-      this.second = `00`;
+      if ( this.hour > 0 ) {
+        this.hour--;
+        this.minute = 59;
+        this.second = 59;
+      } else {
+        this.dayActions();
+      }
+    } else if ( this.direction === "up" ) {
+      if ( this.hour < 23 ) {
+        this.hour++;
+        this.minute = `00`;
+        this.second = `00`;
+      } else {
+        this.dayActions();
+      }
     }
     if (this.hour.toString().split("").length < 2) this.hour = `0${this.hour}`; 
   }
 
   dayActions() {
     if ( this.direction === "down" ) {
-      this.day--;
-      this.hour = 23;
-      this.minute = 59;
-      this.second = 59;
+      if ( this.day > 0 ) {
+        this.day--;
+        this.hour = 23;
+        this.minute = 59;
+        this.second = 59;
+      } else {
+        this.kill();
+      }
     } else {
-      this.day++;
-      this.hour = `00`;
-      this.minute = `00`;
-      this.second = `00`;
+        this.day++;
+        this.hour = `00`;
+        this.minute = `00`;
+        this.second = `00`;
     }
     if (this.day.toString().split("").length < 2) this.day = `0${this.day}`;
   }

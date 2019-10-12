@@ -2,9 +2,10 @@ import controlledTimer from './controlledTimer'
 
 window.addEventListener("load", () => {
     const timerEl = new controlledTimer({
-      start: "00:58",
-      end: "00:00",
-      direction: "down"
+      start: "00:23:59:57",
+      end: "01:00:00:10",
+      direction: "up",
+      endMinuteControlCallback: () => { console.log("abc"); }
     });
 
     const killButton = document.querySelector("#controlledtimer-kill");
